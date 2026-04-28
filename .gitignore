@@ -1,28 +1,15 @@
-# Virtual environments
 venv/
 .venv/
 env/
-
-# Python cache
 __pycache__/
 *.py[cod]
-
-# Database/runtime files
 instance/
 *.db
 *.sqlite
 *.sqlite3
-
-# Secrets
 .env
-
-# macOS
 .DS_Store
 __MACOSX/
-
-# Logs
 *.log
-
-# Editors
 .vscode/
 .idea/
