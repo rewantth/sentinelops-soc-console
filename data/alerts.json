@@ -1,0 +1,502 @@
+[
+  {
+    "alert_id": "ALERT-2026-0046",
+    "timestamp": "2026-04-28 12:26:47",
+    "source_ip": "172.23.60.4",
+    "dest_ip": "192.28.102.185",
+    "alert_type": "lateral_movement",
+    "severity": "low",
+    "raw_log": "2026-04-28 12:26:47 dns-guard-01 windows: unusual remote service authentication src=172.23.60.4 dst=192.28.102.185 protocol=smb user=fbell action=alerted",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0008",
+    "timestamp": "2026-04-28 10:54:57",
+    "source_ip": "172.28.71.250",
+    "dest_ip": "198.43.151.74",
+    "alert_type": "phishing_email",
+    "severity": "medium",
+    "raw_log": "2026-04-28 10:54:57 ids-sensor-02 mail: possible phishing email recipient=youngbrandi@example.com sender=external-notice@webb.com url_reputation=suspicious action=quarantined",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0009",
+    "timestamp": "2026-04-28 10:39:22",
+    "source_ip": "192.168.112.185",
+    "dest_ip": "200.238.218.147",
+    "alert_type": "web_attack",
+    "severity": "low",
+    "raw_log": "2026-04-28 10:39:22 mail-sec-01 waf: suspicious web exploit pattern src=192.168.112.185 dst=200.238.218.147 uri=/login parameter_anomaly=true action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0004",
+    "timestamp": "2026-04-28 10:34:35",
+    "source_ip": "10.212.48.61",
+    "dest_ip": "53.75.15.202",
+    "alert_type": "powershell_execution",
+    "severity": "medium",
+    "raw_log": "2026-04-28 10:34:35 mail-sec-01 edr: suspicious PowerShell process behavior host=10.212.48.61 parent=office_app child=powershell.exe action=alerted",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0035",
+    "timestamp": "2026-04-28 10:23:51",
+    "source_ip": "192.168.12.69",
+    "dest_ip": "183.170.83.239",
+    "alert_type": "phishing_email",
+    "severity": "medium",
+    "raw_log": "2026-04-28 10:23:51 ids-sensor-02 mail: possible phishing email recipient=jyoung@example.com sender=external-notice@johnson.com url_reputation=suspicious action=quarantined",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0033",
+    "timestamp": "2026-04-28 10:03:47",
+    "source_ip": "172.27.196.11",
+    "dest_ip": "209.198.138.235",
+    "alert_type": "phishing_email",
+    "severity": "medium",
+    "raw_log": "2026-04-28 10:03:47 ids-sensor-02 mail: possible phishing email recipient=nedwards@example.com sender=external-notice@hoffman.com url_reputation=suspicious action=quarantined",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0044",
+    "timestamp": "2026-04-28 09:54:37",
+    "source_ip": "10.180.192.246",
+    "dest_ip": "178.201.121.253",
+    "alert_type": "data_exfiltration",
+    "severity": "high",
+    "raw_log": "2026-04-28 09:54:37 waf-prod-01 dlp: unusual outbound data volume src=10.180.192.246 dst=178.201.121.253 bytes_out=419910211 action=investigate",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0023",
+    "timestamp": "2026-04-28 09:54:28",
+    "source_ip": "10.205.68.213",
+    "dest_ip": "210.20.119.5",
+    "alert_type": "malware_download",
+    "severity": "low",
+    "raw_log": "2026-04-28 09:54:28 ids-sensor-02 proxy: risky executable download observed src=10.205.68.213 dst=210.20.119.5 filename=invoice_viewer.exe action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0041",
+    "timestamp": "2026-04-28 09:53:26",
+    "source_ip": "192.168.45.68",
+    "dest_ip": "199.55.23.133",
+    "alert_type": "lateral_movement",
+    "severity": "low",
+    "raw_log": "2026-04-28 09:53:26 mail-sec-01 windows: unusual remote service authentication src=192.168.45.68 dst=199.55.23.133 protocol=smb user=carl00 action=alerted",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0049",
+    "timestamp": "2026-04-28 09:45:06",
+    "source_ip": "10.163.75.112",
+    "dest_ip": "201.196.52.146",
+    "alert_type": "port_scan",
+    "severity": "high",
+    "raw_log": "2026-04-28 09:45:06 dns-guard-01 ids: possible port scan src=10.163.75.112 dst=201.196.52.146 ports_sample=22,80,443,3389 action=monitored",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0015",
+    "timestamp": "2026-04-28 08:51:21",
+    "source_ip": "172.18.171.24",
+    "dest_ip": "210.244.151.69",
+    "alert_type": "privilege_escalation",
+    "severity": "critical",
+    "raw_log": "2026-04-28 08:51:21 dns-guard-01 edr: unexpected privilege change attempt host=172.18.171.24 process=system_utility.exe target=210.244.151.69 action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0012",
+    "timestamp": "2026-04-28 08:12:13",
+    "source_ip": "192.168.39.135",
+    "dest_ip": "11.146.25.29",
+    "alert_type": "malware_download",
+    "severity": "medium",
+    "raw_log": "2026-04-28 08:12:13 waf-prod-01 proxy: risky executable download observed src=192.168.39.135 dst=11.146.25.29 filename=invoice_viewer.exe action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0036",
+    "timestamp": "2026-04-28 07:48:06",
+    "source_ip": "172.20.87.193",
+    "dest_ip": "220.42.7.100",
+    "alert_type": "privilege_escalation",
+    "severity": "low",
+    "raw_log": "2026-04-28 07:48:06 mail-sec-01 edr: unexpected privilege change attempt host=172.20.87.193 process=system_utility.exe target=220.42.7.100 action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0042",
+    "timestamp": "2026-04-28 06:51:34",
+    "source_ip": "172.31.146.245",
+    "dest_ip": "181.186.227.143",
+    "alert_type": "brute_force",
+    "severity": "medium",
+    "raw_log": "2026-04-28 06:51:34 ids-sensor-02 auth: repeated failed login attempts user=whuffman src=172.31.146.245 dst=181.186.227.143 count=12 action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0048",
+    "timestamp": "2026-04-28 06:38:35",
+    "source_ip": "10.75.170.17",
+    "dest_ip": "219.250.31.242",
+    "alert_type": "lateral_movement",
+    "severity": "high",
+    "raw_log": "2026-04-28 06:38:35 edr-core-04 windows: unusual remote service authentication src=10.75.170.17 dst=219.250.31.242 protocol=smb user=gmcintosh action=alerted",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0024",
+    "timestamp": "2026-04-28 06:01:16",
+    "source_ip": "192.168.12.180",
+    "dest_ip": "28.48.212.197",
+    "alert_type": "powershell_execution",
+    "severity": "medium",
+    "raw_log": "2026-04-28 06:01:16 waf-prod-01 edr: suspicious PowerShell process behavior host=192.168.12.180 parent=office_app child=powershell.exe action=alerted",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0020",
+    "timestamp": "2026-04-28 05:44:17",
+    "source_ip": "172.19.2.78",
+    "dest_ip": "200.103.195.27",
+    "alert_type": "brute_force",
+    "severity": "low",
+    "raw_log": "2026-04-28 05:44:17 ids-sensor-02 auth: repeated failed login attempts user=charlesknapp src=172.19.2.78 dst=200.103.195.27 count=23 action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0022",
+    "timestamp": "2026-04-28 05:29:53",
+    "source_ip": "192.168.216.211",
+    "dest_ip": "111.118.251.144",
+    "alert_type": "malware_download",
+    "severity": "low",
+    "raw_log": "2026-04-28 05:29:53 edr-core-04 proxy: risky executable download observed src=192.168.216.211 dst=111.118.251.144 filename=invoice_viewer.exe action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0007",
+    "timestamp": "2026-04-28 05:24:50",
+    "source_ip": "10.65.237.191",
+    "dest_ip": "45.234.89.165",
+    "alert_type": "malware_download",
+    "severity": "medium",
+    "raw_log": "2026-04-28 05:24:50 ids-sensor-02 proxy: risky executable download observed src=10.65.237.191 dst=45.234.89.165 filename=invoice_viewer.exe action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0039",
+    "timestamp": "2026-04-28 05:22:03",
+    "source_ip": "10.71.140.220",
+    "dest_ip": "159.233.46.217",
+    "alert_type": "lateral_movement",
+    "severity": "high",
+    "raw_log": "2026-04-28 05:22:03 ids-sensor-02 windows: unusual remote service authentication src=10.71.140.220 dst=159.233.46.217 protocol=smb user=jillcurtis action=alerted",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0005",
+    "timestamp": "2026-04-28 04:41:17",
+    "source_ip": "192.168.15.57",
+    "dest_ip": "139.95.89.237",
+    "alert_type": "phishing_email",
+    "severity": "low",
+    "raw_log": "2026-04-28 04:41:17 mail-sec-01 mail: possible phishing email recipient=elizabethjones@example.com sender=external-notice@hicks.biz url_reputation=suspicious action=quarantined",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0040",
+    "timestamp": "2026-04-28 04:38:54",
+    "source_ip": "192.168.247.236",
+    "dest_ip": "132.155.138.5",
+    "alert_type": "data_exfiltration",
+    "severity": "medium",
+    "raw_log": "2026-04-28 04:38:54 mail-sec-01 dlp: unusual outbound data volume src=192.168.247.236 dst=132.155.138.5 bytes_out=615196058 action=investigate",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0045",
+    "timestamp": "2026-04-28 04:14:55",
+    "source_ip": "172.17.141.241",
+    "dest_ip": "60.242.31.93",
+    "alert_type": "lateral_movement",
+    "severity": "high",
+    "raw_log": "2026-04-28 04:14:55 edr-core-04 windows: unusual remote service authentication src=172.17.141.241 dst=60.242.31.93 protocol=smb user=taylormelanie action=alerted",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0002",
+    "timestamp": "2026-04-28 03:22:50",
+    "source_ip": "172.28.221.198",
+    "dest_ip": "175.186.175.247",
+    "alert_type": "command_and_control",
+    "severity": "critical",
+    "raw_log": "2026-04-28 03:22:50 dns-guard-01 netflow: periodic outbound beacon pattern src=172.28.221.198 dst=175.186.175.247 interval_seconds=300 protocol=https action=monitored",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0043",
+    "timestamp": "2026-04-28 03:19:51",
+    "source_ip": "10.141.79.231",
+    "dest_ip": "186.73.5.242",
+    "alert_type": "port_scan",
+    "severity": "high",
+    "raw_log": "2026-04-28 03:19:51 ids-sensor-02 ids: possible port scan src=10.141.79.231 dst=186.73.5.242 ports_sample=22,80,443,3389 action=monitored",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0047",
+    "timestamp": "2026-04-28 03:04:07",
+    "source_ip": "10.107.136.8",
+    "dest_ip": "107.29.65.135",
+    "alert_type": "dns_tunneling",
+    "severity": "critical",
+    "raw_log": "2026-04-28 03:04:07 ids-sensor-02 dns: high entropy DNS query pattern src=10.107.136.8 domain=armstrong-sexton.com query_length=99 action=monitored",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0031",
+    "timestamp": "2026-04-28 02:05:33",
+    "source_ip": "192.168.154.60",
+    "dest_ip": "137.104.202.213",
+    "alert_type": "privilege_escalation",
+    "severity": "high",
+    "raw_log": "2026-04-28 02:05:33 ids-sensor-02 edr: unexpected privilege change attempt host=192.168.154.60 process=system_utility.exe target=137.104.202.213 action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0003",
+    "timestamp": "2026-04-28 01:58:16",
+    "source_ip": "172.16.150.145",
+    "dest_ip": "64.193.96.248",
+    "alert_type": "command_and_control",
+    "severity": "high",
+    "raw_log": "2026-04-28 01:58:16 fw-edge-01 netflow: periodic outbound beacon pattern src=172.16.150.145 dst=64.193.96.248 interval_seconds=300 protocol=https action=monitored",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0026",
+    "timestamp": "2026-04-28 01:48:38",
+    "source_ip": "192.168.166.165",
+    "dest_ip": "210.235.166.19",
+    "alert_type": "privilege_escalation",
+    "severity": "critical",
+    "raw_log": "2026-04-28 01:48:38 dns-guard-01 edr: unexpected privilege change attempt host=192.168.166.165 process=system_utility.exe target=210.235.166.19 action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0006",
+    "timestamp": "2026-04-28 01:31:55",
+    "source_ip": "10.164.150.136",
+    "dest_ip": "176.118.181.131",
+    "alert_type": "malware_download",
+    "severity": "medium",
+    "raw_log": "2026-04-28 01:31:55 ids-sensor-02 proxy: risky executable download observed src=10.164.150.136 dst=176.118.181.131 filename=invoice_viewer.exe action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0014",
+    "timestamp": "2026-04-28 01:07:23",
+    "source_ip": "172.22.114.75",
+    "dest_ip": "128.234.147.104",
+    "alert_type": "web_attack",
+    "severity": "critical",
+    "raw_log": "2026-04-28 01:07:23 dns-guard-01 waf: suspicious web exploit pattern src=172.22.114.75 dst=128.234.147.104 uri=/login parameter_anomaly=true action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0027",
+    "timestamp": "2026-04-28 01:01:36",
+    "source_ip": "192.168.89.87",
+    "dest_ip": "210.129.147.115",
+    "alert_type": "privilege_escalation",
+    "severity": "high",
+    "raw_log": "2026-04-28 01:01:36 mail-sec-01 edr: unexpected privilege change attempt host=192.168.89.87 process=system_utility.exe target=210.129.147.115 action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0018",
+    "timestamp": "2026-04-28 01:00:40",
+    "source_ip": "192.168.100.100",
+    "dest_ip": "166.14.193.160",
+    "alert_type": "phishing_email",
+    "severity": "medium",
+    "raw_log": "2026-04-28 01:00:40 dns-guard-01 mail: possible phishing email recipient=bartonkevin@example.com sender=external-notice@hernandez-hudson.net url_reputation=suspicious action=quarantined",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0013",
+    "timestamp": "2026-04-28 00:55:16",
+    "source_ip": "192.168.69.91",
+    "dest_ip": "214.236.117.179",
+    "alert_type": "dns_tunneling",
+    "severity": "high",
+    "raw_log": "2026-04-28 00:55:16 waf-prod-01 dns: high entropy DNS query pattern src=192.168.69.91 domain=fitzgerald.com query_length=131 action=monitored",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0010",
+    "timestamp": "2026-04-28 00:27:13",
+    "source_ip": "172.23.59.241",
+    "dest_ip": "22.195.14.87",
+    "alert_type": "suspicious_login",
+    "severity": "critical",
+    "raw_log": "2026-04-28 00:27:13 waf-prod-01 iam: unusual successful login user=christine24 src=172.23.59.241 dst=22.195.14.87 reason=new_device_new_location",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0017",
+    "timestamp": "2026-04-27 22:34:54",
+    "source_ip": "192.168.11.214",
+    "dest_ip": "29.147.108.239",
+    "alert_type": "web_attack",
+    "severity": "low",
+    "raw_log": "2026-04-27 22:34:54 waf-prod-01 waf: suspicious web exploit pattern src=192.168.11.214 dst=29.147.108.239 uri=/login parameter_anomaly=true action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0021",
+    "timestamp": "2026-04-27 22:26:51",
+    "source_ip": "10.193.188.219",
+    "dest_ip": "179.61.185.247",
+    "alert_type": "data_exfiltration",
+    "severity": "high",
+    "raw_log": "2026-04-27 22:26:51 ids-sensor-02 dlp: unusual outbound data volume src=10.193.188.219 dst=179.61.185.247 bytes_out=257090983 action=investigate",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0029",
+    "timestamp": "2026-04-27 20:50:11",
+    "source_ip": "192.168.47.169",
+    "dest_ip": "205.128.52.104",
+    "alert_type": "data_exfiltration",
+    "severity": "high",
+    "raw_log": "2026-04-27 20:50:11 ids-sensor-02 dlp: unusual outbound data volume src=192.168.47.169 dst=205.128.52.104 bytes_out=103685450 action=investigate",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0030",
+    "timestamp": "2026-04-27 18:41:22",
+    "source_ip": "192.168.51.241",
+    "dest_ip": "107.118.173.200",
+    "alert_type": "powershell_execution",
+    "severity": "high",
+    "raw_log": "2026-04-27 18:41:22 edr-core-04 edr: suspicious PowerShell process behavior host=192.168.51.241 parent=office_app child=powershell.exe action=alerted",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0032",
+    "timestamp": "2026-04-27 18:21:33",
+    "source_ip": "10.107.8.121",
+    "dest_ip": "186.227.18.114",
+    "alert_type": "command_and_control",
+    "severity": "high",
+    "raw_log": "2026-04-27 18:21:33 ids-sensor-02 netflow: periodic outbound beacon pattern src=10.107.8.121 dst=186.227.18.114 interval_seconds=300 protocol=https action=monitored",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0016",
+    "timestamp": "2026-04-27 18:16:28",
+    "source_ip": "192.168.154.60",
+    "dest_ip": "204.55.40.100",
+    "alert_type": "suspicious_login",
+    "severity": "low",
+    "raw_log": "2026-04-27 18:16:28 waf-prod-01 iam: unusual successful login user=nunezchristian src=192.168.154.60 dst=204.55.40.100 reason=new_device_new_location",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0001",
+    "timestamp": "2026-04-27 18:14:17",
+    "source_ip": "192.168.13.164",
+    "dest_ip": "213.249.210.249",
+    "alert_type": "suspicious_login",
+    "severity": "high",
+    "raw_log": "2026-04-27 18:14:17 waf-prod-01 iam: unusual successful login user=kelly11 src=192.168.13.164 dst=213.249.210.249 reason=new_device_new_location",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0025",
+    "timestamp": "2026-04-27 18:08:12",
+    "source_ip": "10.136.141.46",
+    "dest_ip": "215.69.81.183",
+    "alert_type": "suspicious_login",
+    "severity": "medium",
+    "raw_log": "2026-04-27 18:08:12 mail-sec-01 iam: unusual successful login user=ashley68 src=10.136.141.46 dst=215.69.81.183 reason=new_device_new_location",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0019",
+    "timestamp": "2026-04-27 16:19:56",
+    "source_ip": "192.168.38.222",
+    "dest_ip": "198.103.217.192",
+    "alert_type": "phishing_email",
+    "severity": "high",
+    "raw_log": "2026-04-27 16:19:56 mail-sec-01 mail: possible phishing email recipient=xjenkins@example.com sender=external-notice@wright.com url_reputation=suspicious action=quarantined",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0028",
+    "timestamp": "2026-04-27 16:06:47",
+    "source_ip": "192.168.215.171",
+    "dest_ip": "223.31.125.19",
+    "alert_type": "phishing_email",
+    "severity": "medium",
+    "raw_log": "2026-04-27 16:06:47 fw-edge-01 mail: possible phishing email recipient=etucker@example.com sender=external-notice@marshall-savage.biz url_reputation=suspicious action=quarantined",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0050",
+    "timestamp": "2026-04-27 15:18:22",
+    "source_ip": "172.16.246.145",
+    "dest_ip": "222.0.159.52",
+    "alert_type": "dns_tunneling",
+    "severity": "medium",
+    "raw_log": "2026-04-27 15:18:22 edr-core-04 dns: high entropy DNS query pattern src=172.16.246.145 domain=holloway.net query_length=98 action=monitored",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0037",
+    "timestamp": "2026-04-27 14:59:35",
+    "source_ip": "192.168.178.254",
+    "dest_ip": "44.96.143.121",
+    "alert_type": "web_attack",
+    "severity": "high",
+    "raw_log": "2026-04-27 14:59:35 dns-guard-01 waf: suspicious web exploit pattern src=192.168.178.254 dst=44.96.143.121 uri=/login parameter_anomaly=true action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0038",
+    "timestamp": "2026-04-27 14:52:17",
+    "source_ip": "192.168.51.38",
+    "dest_ip": "24.66.188.81",
+    "alert_type": "brute_force",
+    "severity": "medium",
+    "raw_log": "2026-04-27 14:52:17 mail-sec-01 auth: repeated failed login attempts user=samuel17 src=192.168.51.38 dst=24.66.188.81 count=22 action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0011",
+    "timestamp": "2026-04-27 14:22:33",
+    "source_ip": "172.30.211.187",
+    "dest_ip": "212.137.100.222",
+    "alert_type": "malware_download",
+    "severity": "medium",
+    "raw_log": "2026-04-27 14:22:33 mail-sec-01 proxy: risky executable download observed src=172.30.211.187 dst=212.137.100.222 filename=invoice_viewer.exe action=blocked",
+    "status": "new"
+  },
+  {
+    "alert_id": "ALERT-2026-0034",
+    "timestamp": "2026-04-27 13:14:38",
+    "source_ip": "10.77.22.8",
+    "dest_ip": "207.92.178.249",
+    "alert_type": "phishing_email",
+    "severity": "medium",
+    "raw_log": "2026-04-27 13:14:38 ids-sensor-02 mail: possible phishing email recipient=christine15@example.com sender=external-notice@bruce-jacobs.biz url_reputation=suspicious action=quarantined",
+    "status": "new"
+  }
+]

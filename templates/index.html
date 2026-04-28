@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- FEATURE ADDED: MTTD / MTTR Metrics -->
+    <!-- FEATURE ADDED: Alert Correlation Engine -->
+    <!-- FEATURE ADDED: Shift Handoff Report -->
+    <!-- FEATURE ADDED: Response Playbook Checklist -->
+    <!-- FEATURE ADDED: Sigma Rule Generator -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SentinelOps — SOC Alert Triage & Investigation Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="scanline"></div>
+
+    <aside class="sidebar">
+        <div class="logo-block">
+            <div class="logo-mark">SO</div>
+            <div>
+                <div class="logo-text">SentinelOps</div>
+                <div class="logo-subtitle">SOC Command Console</div>
+            </div>
+        </div>
+        <div class="author-card">
+            <span>Built by</span>
+            <strong>Rewantth Babh Vadlakonda</strong>
+            <a href="https://www.linkedin.com/in/rewantth-babh" target="_blank" rel="noreferrer">LinkedIn Profile</a>
+        </div>
+        <nav class="side-nav" aria-label="SentinelOps workspaces">
+            <button class="nav-item active" type="button" data-workspace="command-center">Command Center</button>
+            <button class="nav-item" type="button" data-workspace="live-alert-feed">Live Alert Feed</button>
+            <button class="nav-item" type="button" data-workspace="case-queue">Case Queue</button>
+            <button class="nav-item" type="button" data-workspace="investigation-war-room">Investigation War Room</button>
+            <button class="nav-item" type="button" data-workspace="threat-market-view">Threat Market View</button>
+            <button class="nav-item" type="button" data-workspace="mitre-heatmap">MITRE Heatmap</button>
+            <button class="nav-item" type="button" data-workspace="threat-intel-lookup">Threat Intel Lookup</button>
+            <button class="nav-item" type="button" data-workspace="detection-lab">Detection Lab</button>
+            <button class="nav-item" type="button" data-workspace="case-reports">Case Reports</button>
+            <button class="nav-item" type="button" data-workspace="analyst-profile">Analyst Profile</button>
+        </nav>
+        <div class="sidebar-status">
+            <div><span class="status-dot cyan"></span>TELEMETRY STREAM: ACTIVE</div>
+            <div><span class="status-dot green"></span>ALERT INGESTION: ONLINE</div>
+            <div><span class="status-dot blue"></span>ANALYST CONSOLE: LIVE</div>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <div class="clock" id="liveClock">--:--:--</div>
+                <div class="date" id="liveDate">---- -- --</div>
+            </div>
+            <div class="topbar-badges">
+                <span class="badge-shell"><span class="status-dot cyan"></span>SYSTEM STATUS: MONITORING</span>
+                <span class="badge-shell"><span class="status-dot green"></span>TELEMETRY STREAM: ACTIVE</span>
+                <span class="badge-shell">ANALYST CONSOLE: REWANTTH BABH VADLAKONDA</span>
+            </div>
+        </header>
+
+        <section class="workspace active" id="workspace-command-center" data-workspace="command-center" style="display:block">
+            <div class="workspace-heading">
+                <div>
+                    <p class="eyebrow">ACTIVE THREAT OPERATIONS VIEW</p>
+                    <h1>SOC Command Center</h1>
+                    <p>Clean operational overview for SentinelOps simulated SOC readiness and alert flow.</p>
+                </div>
+                <div class="simulation-console compact">
+                    <div class="sim-title">LIVE SIMULATION STATUS</div>
+                    <div class="sim-readout" id="simulationState">PAUSED</div>
+                    <div class="sim-actions">
+                        <button class="primary-btn" type="button" data-sim-action="start">Start Live Simulation</button>
+                        <button class="ghost-btn" type="button" data-sim-action="pause">Pause Simulation</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-pill-grid">
+                <span><span class="status-dot cyan"></span>TELEMETRY STREAM: ACTIVE</span>
+                <span><span class="status-dot green"></span>ALERT INGESTION: ONLINE</span>
+                <span><span class="status-dot blue"></span>MITRE ENGINE: READY</span>
+                <span><span class="status-dot cyan"></span>ANALYST WORKSPACE: LIVE</span>
+            </div>
+
+            <div class="metrics-grid">
+                <article class="metric-card cyan">
+                    <div class="metric-icon">Σ</div>
+                    <span>Total Alerts</span>
+                    <strong id="metricTotal">0</strong>
+                </article>
+                <article class="metric-card red">
+                    <div class="metric-icon">!</div>
+                    <span>Critical Alerts</span>
+                    <strong id="metricCritical">0</strong>
+                </article>
+                <article class="metric-card orange">
+                    <div class="metric-icon">⌁</div>
+                    <span>Open Investigations</span>
+                    <strong id="metricOpen">0</strong>
+                </article>
+                <article class="metric-card green">
+                    <div class="metric-icon">✓</div>
+                    <span>Closed Today</span>
+                    <strong id="metricClosed">0</strong>
+                </article>
+                <article class="metric-card cyan">
+                    <div class="metric-icon">Δ</div>
+                    <span>MTTD</span>
+                    <strong id="metricMttd">00:00:00</strong>
+                    <small>Mean Time to Detect</small>
+                </article>
+                <article class="metric-card green">
+                    <div class="metric-icon">↻</div>
+                    <span>MTTR</span>
+                    <strong id="metricMttr">00:00:00</strong>
+                    <small>Mean Time to Respond</small>
+                </article>
+            </div>
+
+            <div class="command-grid">
+                <article class="panel">
+                    <div class="panel-title">SOC Readiness Snapshot</div>
+                    <div class="readiness-score">
+                        <strong>85%</strong>
+                        <span>SOC Readiness Score</span>
+                    </div>
+                    <div class="readiness-list">
+                        <div><span>SOC Workflow Coverage</span><strong>85%</strong></div>
+                        <div><span>Detection Mapping</span><strong>Active</strong></div>
+                        <div><span>Case Documentation</span><strong>Enabled</strong></div>
+                        <div><span>Alert Simulation</span><strong id="readinessSimulation">Paused</strong></div>
+                    </div>
+                    <p class="panel-note">Simulated project-readiness indicator for portfolio demonstration, not a production security score.</p>
+                </article>
+                <article class="panel">
+                    <div class="panel-title">Recent Alert Snapshot</div>
+                    <div class="feed-list compact-feed" id="commandRecentSnapshot">
+                        <div class="empty">Waiting for telemetry...</div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="workspace" id="workspace-live-alert-feed" data-workspace="live-alert-feed" style="display:none">
+            <div class="workspace-heading">
+                <div>
+                    <p class="eyebrow">LIVE TELEMETRY MONITORING</p>
+                    <h1>Live Alert Feed</h1>
+                    <p>Full-screen SOC alert queue with live relative ages, filtering, search, and simulated alert ingestion.</p>
+                </div>
+                <div class="workspace-actions">
+                    <button class="primary-btn" type="button" data-sim-action="start">Start Live Simulation</button>
+                    <button class="ghost-btn" type="button" data-sim-action="pause">Pause Simulation</button>
+                    <button class="ghost-btn" id="refreshAlerts" type="button">Refresh</button>
+                </div>
+            </div>
+            <div class="panel queue-panel full-workspace">
+                <div class="filters">
+                    <select id="severityFilter">
+                        <option value="">All severities</option>
+                        <option value="critical">Critical</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                    <select id="statusFilter">
+                        <option value="">All statuses</option>
+                        <option value="new">New</option>
+                        <option value="investigating">Investigating</option>
+                        <option value="escalated">Escalated</option>
+                        <option value="closed">Closed</option>
+                    </select>
+                    <select id="typeFilter">
+                        <option value="">All alert types</option>
+                    </select>
+                    <input id="searchFilter" type="search" placeholder="Search alert ID or IP">
+                </div>
+                <div class="table-wrap large-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Relative Time</th>
+                                <th>Alert ID</th>
+                                <th>Source IP</th>
+                                <th>Destination IP</th>
+                                <th>Alert Type</th>
+                                <th>Severity</th>
+                                <th>MITRE Tactic</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alertsTableBody">
+                            <tr><td colspan="10" class="empty">No alerts loaded.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="workspace" id="workspace-case-queue" data-workspace="case-queue" style="display:none">
+            <div class="workspace-heading">
+                <div>
+                    <p class="eyebrow">SOC CASE MANAGEMENT</p>
+                    <h1>Case Queue</h1>
+                    <p>Cases grouped by workflow state for fast handoff, escalation, and closure tracking.</p>
+                </div>
+            </div>
+            <div class="case-board" id="caseQueueColumns"></div>
+        </section>
+
+        <section class="workspace" id="workspace-investigation-war-room" data-workspace="investigation-war-room" style="display:none">
+            <div class="workspace-heading">
+                <div>
+                    <p class="eyebrow">ACTIVE INCIDENT RESPONSE</p>
+                    <h1>Incident War Room</h1>
+                    <p>Dedicated analyst workspace for evidence review, enrichment, ATT&CK classification, notes, timeline, and export.</p>
+                </div>
+            </div>
+            <div class="panel war-room-panel">
+                <div id="emptyInvestigation" class="empty-investigation">Select an alert from Live Alert Feed or Case Queue to begin triage.</div>
+                <div id="investigationContent" class="hidden">
+                    <div class="investigation-head">
+                        <div>
+                            <span class="eyebrow">ACTIVE CASE</span>
+                            <h2 id="detailAlertId">ALERT</h2>
+                            <p id="detailMeta">metadata</p>
+                        </div>
+                        <span id="detailSeverity" class="severity-badge">severity</span>
+                    </div>
+
+                    <div class="detail-grid">
+                        <div class="detail-box"><span>Source IP</span><strong id="detailSource">-</strong></div>
+                        <div class="detail-box"><span>Destination IP</span><strong id="detailDest">-</strong></div>
+                        <div class="detail-box"><span>Status</span><strong id="detailStatus">-</strong></div>
+                        <div class="detail-box"><span>Reputation Score</span><strong id="detailReputation">0</strong></div>
+                    </div>
+
+                    <div class="war-room-grid">
+                        <article class="subpanel raw-log-panel">
+                            <h3>Raw Log Terminal</h3>
+                            <pre id="detailRawLog" class="raw-log"></pre>
+                        </article>
+                        <article class="subpanel mitre-card">
+                            <h3>MITRE Classification</h3>
+                            <div id="detailMitre">No MITRE classification saved yet.</div>
+                            <button class="primary-btn" id="classifyBtn" type="button">Classify MITRE</button>
+                        </article>
+                        <article class="subpanel reputation-card">
+                            <h3>VirusTotal Enrichment</h3>
+                            <div id="detailReputationResult">No enrichment has been run yet.</div>
+                            <button class="primary-btn" id="enrichBtn" type="button">Enrich IP</button>
+                        </article>
+                        <article class="subpanel recommendations-card">
+                            <h3>Response Recommendations</h3>
+                            <ul id="responseRecommendations"></ul>
+                        </article>
+                    </div>
+
+                    <div class="form-grid">
+                        <label>Analyst Notes<textarea id="analystNotes" placeholder="Document triage observations, hypotheses, and evidence."></textarea></label>
+                        <label>Investigation Summary<textarea id="investigationSummary" placeholder="Summarize case disposition and next actions."></textarea></label>
+                    </div>
+                    <article class="subpanel playbook-panel collapsed" id="playbookPanel">
+                        <button class="playbook-toggle" id="playbookToggle" type="button">
+                            <span>Incident Response Playbook</span>
+                            <strong id="playbookProgressText">0 of 0 steps completed</strong>
+                        </button>
+                        <div class="playbook-progress">
+                            <i id="playbookProgressFill" style="width:0%"></i>
+                        </div>
+                        <div class="playbook-content" id="playbookContent">
+                            <div class="playbook-complete hidden" id="playbookCompleteBadge">PLAYBOOK COMPLETE — READY TO CLOSE</div>
+                            <div class="playbook-steps" id="playbookSteps">
+                                <div class="empty">Select an alert to load a response playbook.</div>
+                            </div>
+                        </div>
+                    </article>
+                    <div class="case-actions">
+                        <select id="statusSelect">
+                            <option value="new">New</option>
+                            <option value="investigating">Investigating</option>
+                            <option value="escalated">Escalated</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                        <button class="primary-btn" id="saveNotesBtn" type="button">Save Notes</button>
+                        <button class="ghost-btn" id="updateStatusBtn" type="button">Update Status</button>
+                        <button class="ghost-btn" id="exportBtn" type="button">Export Investigation JSON</button>
+                    </div>
+                    <article class="subpanel timeline-panel">
+                        <h3>Case Timeline</h3>
+                        <div id="timelineList" class="timeline-list">
+                            <div class="empty">No timeline events recorded.</div>
+                        </div>
+                    </article>
+                    <article class="subpanel correlation-panel">
+                        <div class="panel-title-row">
+                            <h3>Correlated Alerts</h3>
+                            <span class="correlation-warning hidden" id="correlationAlertBadge">⚠ COORDINATED ATTACK INDICATOR — Multiple alerts from same source IP</span>
+                        </div>
+                        <div class="table-wrap compact-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Alert ID</th>
+                                        <th>Alert Type</th>
+                                        <th>Severity</th>
+                                        <th>Correlation Reason</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="correlatedAlertsBody">
+                                    <tr><td colspan="5" class="empty">No correlated activity detected.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="workspace" id="workspace-threat-market-view" data-workspace="threat-market-view" style="display:none">
+            <div class="workspace-heading">
+                <div>
+                    <p class="eyebrow">SOC MARKET PULSE</p>
+                    <h1>Threat Market View</h1>
+                    <p>Cyber threat-market inspired view of simulated alert volatility, case pressure, and workload movement.</p>
+                </div>
+            </div>
+            <div class="ticker-shell">
+                <div class="ticker-label">Live Threat Ticker</div>
+                <div class="ticker-window"><div class="ticker-track" id="threatTickerTrack">INITIALIZING TELEMETRY...</div></div>
+            </div>
+            <div class="market-grid">
+                <article class="panel volatility-panel">
+                    <div class="panel-title">Alert Volatility Monitor</div>
+                    <canvas id="volatilityCanvas" width="900" height="320"></canvas>
+                </article>
+                <article class="panel pressure-index">
+                    <div class="panel-title">Threat Pressure Index</div>
+                    <div class="volatility-score"><strong id="volatilityScore">0</strong><span id="volatilityLevel">LOW</span></div>
+                    <p>Simulated SOC workload/risk indicator built from critical/high alerts, open investigations, escalations, repeated sources, C2, and malware-download activity.</p>
+                </article>
+                <article class="panel">
+                    <div class="panel-title">Case Load Distribution</div>
+                    <div class="pressure-board" id="pressureBoard"></div>
+                </article>
+                <article class="panel">
+                    <div class="panel-title">Mini Sparklines</div>
+                    <div class="spark-grid">
+                        <div><span>Total Alerts</span><canvas id="sparkTotal" width="190" height="48"></canvas></div>
+                        <div><span>Critical Alerts</span><canvas id="sparkCritical" width="190" height="48"></canvas></div>
+                        <div><span>Open Investigations</span><canvas id="sparkOpen" width="190" height="48"></canvas></div>
+                        <div><span>Escalated Cases</span><canvas id="sparkEscalated" width="190" height="48"></canvas></div>
+                    </div>
+                </article>
+                <article class="panel">
+                    <div class="panel-title">MITRE Activity Movement</div>
+                    <canvas id="mitreMovementChart"></canvas>
+                </article>
+                <article class="panel">
+                    <div class="panel-title">Live Threat Movement Feed</div>
+                    <div class="feed-list" id="marketMovementFeed"></div>
+                </article>
+            </div>
+        </section>
+
+        <section class="workspace" id="workspace-mitre-heatmap" data-workspace="mitre-heatmap" style="display:none">
+            <div class="workspace-heading">
+                <div>
+                    <p class="eyebrow">ATT&CK COVERAGE VIEW</p>
+                    <h1>MITRE ATT&CK Heatmap</h1>
+                    <p>Mapped tactics, technique cards, alert types, and matrix-style heatmap for classified activity.</p>
+                </div>
+            </div>
+            <div class="mitre-workspace-grid">
+                <article class="panel"><div class="panel-title">MITRE Tactic Distribution</div><canvas id="mitreChart"></canvas></article>
+                <article class="panel"><div class="panel-title">Technique Cards</div><div class="technique-card-grid" id="techniqueCards"></div></article>
+                <article class="panel full-span"><div class="panel-title">Mini ATT&CK Heatmap Matrix</div><div class="mitre-matrix" id="mitreMatrix"></div></article>
+            </div>
+        </section>
+
+        <section class="workspace" id="workspace-threat-intel-lookup" data-workspace="threat-intel-lookup" style="display:none">
+            <div class="workspace-heading">
+                <div>
+                    <p class="eyebrow">IOC AND REPUTATION REVIEW</p>
+                    <h1>Threat Intelligence Lookup</h1>
+                    <p>Focused view of selected source IP reputation, repeated source indicators, enrichment status, and IOC summary.</p>
+                </div>
+            </div>
+            <div class="intel-grid">
+                <article class="panel"><div class="panel-title">Selected Source IP Reputation</div><div id="intelSourceSummary" class="intel-summary">Select an alert to inspect source reputation.</div></article>
+                <article class="panel"><div class="panel-title">Repeated Source IP Indicators</div><div id="repeatedSourceIps" class="pressure-board"></div></article>
+                <article class="panel full-span"><div class="panel-title">IOC Summary</div><div id="iocSummary" class="ioc-grid"></div></article>
+            </div>
+        </section>
+
+        <section class="workspace" id="workspace-detection-lab" data-workspace="detection-lab" style="display:none">
+            <div class="workspace-heading">
+                <div>
+                    <p class="eyebrow">DETECTION ENGINEERING</p>
+                    <h1>Detection Engineering Lab</h1>
+                    <p>Detection notes, useful fields, log sources, false positive considerations, and Sigma-style rule ideas for the selected alert type.</p>
+                </div>
+            </div>
+            <div class="panel sigma-panel">
+                <div class="panel-title">Sigma Rule Generator</div>
+                <div class="sigma-controls">
+                    <select id="sigmaAlertSelect" aria-label="Select alert for Sigma rule generation">
+                        <option value="">Select an alert</option>
+                    </select>
+                    <button class="primary-btn" id="generateSigmaBtn" type="button">Generate Sigma Rule</button>
+                    <button class="ghost-btn" id="copySigmaBtn" type="button">Copy Rule</button>
+                </div>
+                <div id="sigmaAlertMeta" class="sigma-meta">Select an alert to review detection context.</div>
+                <pre class="sigma-output"><code id="sigmaOutput"># Sigma output will appear here after generation.</code></pre>
+                <div class="sigma-disclaimer">⚠ This is a simulated Sigma rule generated for educational and portfolio demonstration purposes. It is not a production-ready detection rule.</div>
+                <div id="sigmaMessage" class="ui-message"></div>
+            </div>
+            <div class="detection-grid" id="detectionGuidance"></div>
+        </section>
+
+        <section class="workspace" id="workspace-case-reports" data-workspace="case-reports" style="display:none">
+            <div class="workspace-heading">
+                <div>
+                    <p class="eyebrow">CASE DOCUMENTATION</p>
+                    <h1>Case Reports & Analyst Exports</h1>
+                    <p>Report-ready case summary, analyst notes, status history, and JSON export for the selected investigation.</p>
+                </div>
+                <div class="workspace-actions">
+                    <button class="primary-btn" id="generateShiftReportBtn" type="button">Generate Shift Report</button>
+                    <button class="ghost-btn" id="reportExportBtn" type="button">Export Investigation JSON</button>
+                </div>
+            </div>
+            <article class="panel shift-report-panel hidden" id="shiftReportPanel">
+                <div class="shift-report-toolbar">
+                    <div>
+                        <div class="panel-title">SOC Shift Handoff Report</div>
+                        <p class="panel-note">Print-ready eight-hour operational handoff for analyst continuity.</p>
+                    </div>
+                    <div class="workspace-actions">
+                        <button class="primary-btn" id="printShiftReportBtn" type="button">Print / Save as PDF</button>
+                        <button class="ghost-btn" id="closeShiftReportBtn" type="button">Close Report</button>
+                    </div>
+                </div>
+                <div id="shiftReportContent" class="shift-report-content"></div>
+            </article>
+            <div class="report-grid">
+                <article class="panel"><div class="panel-title">Case Summary</div><div id="reportCaseSummary" class="report-block">Select an alert to build a report.</div></article>
+                <article class="panel"><div class="panel-title">Analyst Summary</div><div id="reportAnalystSummary" class="report-block">No analyst notes loaded.</div></article>
+                <article class="panel"><div class="panel-title">Alerts by Severity</div><canvas id="severityChart"></canvas></article>
+                <article class="panel"><div class="panel-title">Alert Status</div><canvas id="statusChart"></canvas></article>
+                <article class="panel full-span"><div class="panel-title">Alert Types</div><canvas id="typeChart"></canvas></article>
+                <article class="panel full-span"><div class="panel-title">Status History</div><div id="reportTimelineList" class="timeline-list"></div></article>
+            </div>
+        </section>
+
+        <section class="workspace" id="workspace-analyst-profile" data-workspace="analyst-profile" style="display:none">
+            <div class="workspace-heading">
+                <div>
+                    <p class="eyebrow">PORTFOLIO CONTEXT</p>
+                    <h1>Analyst Profile</h1>
+                    <p>Professional summary of SentinelOps and the SOC skills demonstrated by this project.</p>
+                </div>
+            </div>
+            <div class="profile-grid">
+                <article class="panel">
+                    <div class="panel-title">Built by Rewantth Babh Vadlakonda</div>
+                    <p>SentinelOps simulates a real SOC workflow by ingesting safe alerts, supporting triage, enriching indicators, mapping activity to MITRE ATT&CK, tracking case status, saving analyst notes, and visualizing security trends.</p>
+                    <p>LinkedIn: <a href="https://www.linkedin.com/in/rewantth-babh" target="_blank" rel="noreferrer">https://www.linkedin.com/in/rewantth-babh</a></p>
+                </article>
+                <article class="panel">
+                    <div class="panel-title">Security Operations Coverage</div>
+                    <ul class="skill-list">
+                        <li>Alert ingestion and triage queue</li>
+                        <li>MITRE ATT&CK classification engine</li>
+                        <li>IP reputation enrichment workflow</li>
+                        <li>Case notes and status tracking</li>
+                        <li>Detection engineering workspace</li>
+                        <li>Threat telemetry visualizations</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <footer>
+            © 2026 Rewantth Babh Vadlakonda | SentinelOps SOC Alert Triage Portfolio |
+            <a href="https://www.linkedin.com/in/rewantth-babh" target="_blank" rel="noreferrer">LinkedIn</a>
+        </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
