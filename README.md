@@ -73,12 +73,6 @@ This workspace includes:
 
 Disclaimer: Threat Volatility Index and candlestick-style alert activity are simulated portfolio metrics, not real-world financial or production security scoring systems.
 
-## Screenshots
-
-- Dashboard screenshot: `[Add dashboard screenshot here]`
-- Alert queue screenshot: `[Add alert queue screenshot here]`
-- Investigation panel screenshot: `[Add investigation panel screenshot here]`
-- MITRE mapping screenshot: `[Add MITRE mapping screenshot here]`
 
 ## Tech Stack
 
